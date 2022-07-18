@@ -4,6 +4,85 @@ exports[`App component matches snapshot 1`] = `
 <div
   className="app"
 >
-  Bootstrap project
+  <div
+    className="home"
+  >
+    <div
+      className="signup-form"
+    >
+      <h1>
+        Signup here:
+      </h1>
+      <div
+        className="signup-form__element"
+      >
+        <label
+          htmlFor="firstName"
+        >
+          First Name
+        </label>
+        <input
+          className="signup-form__input"
+          id="firstName"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="signup-form__element"
+      >
+        <label
+          htmlFor="lastName"
+        >
+          Last Name
+        </label>
+        <input
+          className="signup-form__input"
+          id="lastName"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="signup-form__element"
+      >
+        <label
+          htmlFor="email"
+        >
+          Email
+        </label>
+        <input
+          className="signup-form__input"
+          id="email"
+          onChange={[Function]}
+          type="email"
+          value=""
+        />
+      </div>
+      <div
+        className="signup-form__element"
+      >
+        <label
+          htmlFor="password"
+        >
+          Password
+        </label>
+        <input
+          className="signup-form__input"
+          id="password"
+          onChange={[Function]}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        onClick={[Function]}
+      >
+        Submit
+      </button>
+    </div>
+  </div>
 </div>
 `;

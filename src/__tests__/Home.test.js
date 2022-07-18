@@ -6,7 +6,7 @@ describe("Home component", () => {
   const validProps = {
     user: {
       firstName: 'test first name',
-      lastNameName: 'test last name'
+      lastName: 'test last name'
     },
     setUser: jest.fn
   };

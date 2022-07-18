@@ -1,9 +1,13 @@
+import React, { useState } from 'react';
+import Home from './Home';
 import '../styles/app.css';
 
 const App = () => {
+  const [user, setUser] = useState({});
+
   return (
     <div className="app">
-      Bootstrap project
+      <Home user={user} setUser={setUser} />
     </div>
   );
 }
