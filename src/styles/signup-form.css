@@ -1,0 +1,9 @@
+.signup-form {
+    max-width: 16em;
+}
+
+.signup-form__element {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5em;
+}
