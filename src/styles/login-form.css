@@ -1,0 +1,9 @@
+.login-form {
+    max-width: 16em;
+}
+
+.login-form__element {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5em;
+}
