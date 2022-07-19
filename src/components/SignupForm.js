@@ -1,25 +1,49 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 import "../styles/signup-form.css";
 
-const SignupForm = ({setUser}) => {
+const SignupForm = ({ allUsers, setAllUsers, setCurrentUser }) => {
   const initialFormValues = {
     firstName: "",
     lastName: "",
     email: "",
     password: ""
   };
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     const updatedValues = { ...formValues };
     updatedValues[e.target.id] = e.target.value
-    
     setFormValues(updatedValues);
   };
 
   const handleSubmit = () => {
-    setUser(formValues);
+    setError("");
+    if (
+      !formValues.firstName ||
+      !formValues.lastName ||
+      !formValues.email ||
+      !formValues.password
+    ) {
+      setError("All fields not filled out");
+      return
+    }
+
+    // check user doesnt already exist
+    const filtered = allUsers.filter(user => {
+      return user.email === formValues.email
+    });
+
+    if (filtered.length === 0) {
+      setCurrentUser(formValues);
+      setAllUsers(prev => [...prev, formValues]);
+      navigate("/", { replace: true });
+    } else {
+      setError("User already exists");
+    }
   }
 
   return (
@@ -31,8 +55,8 @@ const SignupForm = ({setUser}) => {
           className="signup-form__input"
           type="text"
           id="firstName"
-          onChange={handleInputChange} 
-          value={formValues.firstName} 
+          onChange={handleInputChange}
+          value={formValues.firstName}
         />
       </div>
       <div className="signup-form__element">
@@ -41,8 +65,8 @@ const SignupForm = ({setUser}) => {
           className="signup-form__input"
           type="text"
           id="lastName"
-          onChange={handleInputChange} 
-          value={formValues.lastName} 
+          onChange={handleInputChange}
+          value={formValues.lastName}
         />
       </div>
       <div className="signup-form__element">
@@ -51,8 +75,8 @@ const SignupForm = ({setUser}) => {
           className="signup-form__input"
           type="email"
           id="email"
-          onChange={handleInputChange} 
-          value={formValues.email} 
+          onChange={handleInputChange}
+          value={formValues.email}
         />
       </div>
       <div className="signup-form__element">
@@ -61,11 +85,12 @@ const SignupForm = ({setUser}) => {
           className="signup-form__input"
           type="password"
           id="password"
-          onChange={handleInputChange} 
-          value={formValues.password} 
+          onChange={handleInputChange}
+          value={formValues.password}
         />
       </div>
       <button onClick={handleSubmit}>Submit</button>
+      {error && <div className="signup-form__error">{error}</div>}
     </div>
   )
 }

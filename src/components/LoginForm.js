@@ -1,13 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../styles/login-form.css";
 
-const LoginForm = () => {
+const LoginForm = ({ allUsers, setCurrentUser }) => {
   const initialFormValues = {
     email: "",
     password: ""
   };
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const updatedValues = { ...formValues };
@@ -17,7 +20,17 @@ const LoginForm = () => {
   };
 
   const handleSubmit = () => {
-    // TODO implement login
+    // check user credentials in super secure manner
+    const matchedCredentials = allUsers.filter(user => {
+      return (user.email === formValues.email) && (user.password === formValues.password)
+    });
+
+    if (matchedCredentials.length === 1) {
+      setCurrentUser(matchedCredentials[0])
+      navigate("/", { replace: true });
+      setFormValues(initialFormValues);
+    }
+    setError("Login failed");
   }
 
   return (
@@ -44,6 +57,7 @@ const LoginForm = () => {
         />
       </div>
       <button onClick={handleSubmit}>Submit</button>
+      {error && <div className="login-form__error">{error}</div>}
     </div>
   )
 }

@@ -6,7 +6,8 @@ import "../styles/app.css";
 import SignupForm from "./SignupForm";
 
 const App = () => {
-  const [user, setUser] = useState({});
+  const [allUsers, setAllUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
     <div className="app">
@@ -17,9 +18,9 @@ const App = () => {
           <NavLink className="app__nav-item" to="login">Login</NavLink>
         </nav>
         <Routes>
-          <Route path="/" element={<Home user={user} />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignupForm setUser={setUser} />} />
+          <Route path="/" element={<Home currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+          <Route path="/login" element={<LoginForm allUsers={allUsers} setCurrentUser={setCurrentUser} />} />
+          <Route path="/signup" element={<SignupForm allUsers={allUsers} setAllUsers={setAllUsers} setCurrentUser={setCurrentUser} />} />
         </Routes>
       </Router>
     </div>
