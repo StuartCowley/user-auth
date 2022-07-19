@@ -4,85 +4,51 @@ exports[`App component matches snapshot 1`] = `
 <div
   className="app"
 >
+  <nav
+    className="app__navbar"
+  >
+    <a
+      aria-current="page"
+      className="app__nav-item active"
+      href="/"
+      onClick={[Function]}
+    >
+      Home
+    </a>
+    <a
+      className="app__nav-item"
+      href="/signup"
+      onClick={[Function]}
+    >
+      Signup
+    </a>
+    <a
+      className="app__nav-item"
+      href="/login"
+      onClick={[Function]}
+    >
+      Login
+    </a>
+  </nav>
   <div
     className="home"
   >
-    <div
-      className="signup-form"
-    >
-      <h1>
-        Signup here:
-      </h1>
-      <div
-        className="signup-form__element"
-      >
-        <label
-          htmlFor="firstName"
-        >
-          First Name
-        </label>
-        <input
-          className="signup-form__input"
-          id="firstName"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        className="signup-form__element"
-      >
-        <label
-          htmlFor="lastName"
-        >
-          Last Name
-        </label>
-        <input
-          className="signup-form__input"
-          id="lastName"
-          onChange={[Function]}
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        className="signup-form__element"
-      >
-        <label
-          htmlFor="email"
-        >
-          Email
-        </label>
-        <input
-          className="signup-form__input"
-          id="email"
-          onChange={[Function]}
-          type="email"
-          value=""
-        />
-      </div>
-      <div
-        className="signup-form__element"
-      >
-        <label
-          htmlFor="password"
-        >
-          Password
-        </label>
-        <input
-          className="signup-form__input"
-          id="password"
-          onChange={[Function]}
-          type="password"
-          value=""
-        />
-      </div>
-      <button
+    <h2>
+      You are not logged in, 
+      <a
+        href="/login"
         onClick={[Function]}
       >
-        Submit
-      </button>
-    </div>
+        log in
+      </a>
+       or 
+      <a
+        href="/signup"
+        onClick={[Function]}
+      >
+        signup
+      </a>
+    </h2>
   </div>
 </div>
 `;

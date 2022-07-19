@@ -1,39 +1,38 @@
-import { render } from '@testing-library/react';
+import { render, screen } from "@testing-library/react";
+import { BrowserRouter as Router } from "react-router-dom";
 import renderer from "react-test-renderer";
 import Home from '../components/Home';
 
 describe("Home component", () => {
   const validProps = {
     user: {
-      firstName: 'test first name',
-      lastName: 'test last name'
-    },
-    setUser: jest.fn
+      firstName: 'test first name'
+    }
   };
 
   it("matches snapshot", () => {
     const generated = renderer
-    .create(<Home user={validProps.user} setUser={validProps.setUser} />)
+    .create(<Router><Home user={validProps.user} /></Router>)
     .toJSON();
 
   expect(generated).toMatchSnapshot();
   });
   
   it("renders welcome message if user logged in", () => {
-    const {getByText} = render(<Home user={validProps.user} setUser={validProps.setUser} />);
-    const message = getByText(/Welcome to you, test first name/);
+    render(<Router><Home user={validProps.user}/></Router>);
+    const message = screen.getByRole("heading", /Welcome to you, test first name/);
 
     expect(message).toBeInTheDocument;
   });
 
-  it("renders form if user not logged in", () => {
+  it("renders redirect message if user not logged in", () => {
     const validProps = {
       user: {
         firstName: ""
       }
     }
-    const {getByText} = render(<Home user={validProps.user} setUser={validProps.setUser} />);
-    const message = getByText(/Signup here:/);
+    render(<Router><Home user={validProps.user} /></Router>);
+    const message = screen.getByRole("heading", /You are not logged in, log in or signup/);
 
     expect(message).toBeInTheDocument;
   });

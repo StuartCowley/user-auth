@@ -4,9 +4,13 @@ exports[`Home component matches snapshot 1`] = `
 <div
   className="home"
 >
-  <div>
+  <h2>
     Welcome to you, 
-    test first name
-  </div>
+    <span
+      className="home__username"
+    >
+      test first name
+    </span>
+  </h2>
 </div>
 `;
