@@ -4,9 +4,9 @@ import App from '../components/App';
 describe("App component", () => {
   it("matches snapshot", () => {
     const generated = renderer
-    .create(<App/>)
-    .toJSON();
+      .create(<App />)
+      .toJSON();
 
-  expect(generated).toMatchSnapshot();
+    expect(generated).toMatchSnapshot();
   })
 });
