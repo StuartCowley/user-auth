@@ -1,0 +1,18 @@
+.app {
+    margin: 2em;
+}
+
+.app__navbar {
+    background-color: lightgray;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.app__nav-item {
+    margin-right: 2em;
+}
+
+.app__nav-item.active {
+    text-decoration: underline;
+    color: green;
+}
