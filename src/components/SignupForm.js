@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 
-import '../styles/signup-form.css';
+import "../styles/signup-form.css";
 
 const SignupForm = ({setUser}) => {
   const initialFormValues = {
@@ -23,9 +23,9 @@ const SignupForm = ({setUser}) => {
   }
 
   return (
-    <div className='signup-form'>
+    <div className="signup-form">
       <h1>Signup here:</h1>
-      <div className='signup-form__element'>
+      <div className="signup-form__element">
         <label htmlFor="firstName">First Name</label>
         <input
           className="signup-form__input"
@@ -35,7 +35,7 @@ const SignupForm = ({setUser}) => {
           value={formValues.firstName} 
         />
       </div>
-      <div className='signup-form__element'>
+      <div className="signup-form__element">
         <label htmlFor="lastName">Last Name</label>
         <input
           className="signup-form__input"
@@ -45,7 +45,7 @@ const SignupForm = ({setUser}) => {
           value={formValues.lastName} 
         />
       </div>
-      <div className='signup-form__element'>
+      <div className="signup-form__element">
         <label htmlFor="email">Email</label>
         <input
           className="signup-form__input"
@@ -55,7 +55,7 @@ const SignupForm = ({setUser}) => {
           value={formValues.email} 
         />
       </div>
-      <div className='signup-form__element'>
+      <div className="signup-form__element">
         <label htmlFor="password">Password</label>
         <input
           className="signup-form__input"
