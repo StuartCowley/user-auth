@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import renderer from "react-test-renderer";
 import LoginForm from '../components/LoginForm';
@@ -40,18 +40,60 @@ describe("Login form component", () => {
   it("renders all form elements", () => {
     render(
       <Router>
-          <LoginForm
-            allUsers={validProps.allUsers}
-            setCurrentUser={validProps.setCurrentUser}
-          />
-        </Router>
+        <LoginForm
+          allUsers={validProps.allUsers}
+          setCurrentUser={validProps.setCurrentUser}
+        />
+      </Router>
     )
     const emailField = screen.getByText("Email");
     const passwordField = screen.getByText("Password");
+    const loginButton = screen.getByText("Submit");
 
     expect(emailField).toBeInTheDocument;
     expect(passwordField).toBeInTheDocument;
+    expect(loginButton).toBeInTheDocument;
   })
 
-  // TODO add error checking tests
+  it("shows login failure message with non existent user", async () => {
+    render(
+      <Router>
+        <LoginForm
+          allUsers={validProps.allUsers}
+          setCurrentUser={validProps.setCurrentUser}
+        />
+      </Router>
+    )
+    const emailField = screen.getByText("Email");
+    const passwordField = screen.getByText("Password");
+    const loginButton = screen.getByText("Submit");
+
+    fireEvent.change(emailField, "testUser");
+    fireEvent.change(passwordField, "testPass");
+    fireEvent.click(loginButton);
+
+    const errorMessage = await screen.findByText("Login failed");
+    expect(errorMessage).toBeInTheDocument;
+  })
+
+  it("shows login failure message when logging in with invalid credentials", async () => {
+    render(
+      <Router>
+        <LoginForm
+          allUsers={validProps.allUsers}
+          setCurrentUser={validProps.setCurrentUser}
+        />
+      </Router>
+    )
+    const emailField = screen.getByText("Email");
+    const passwordField = screen.getByText("Password");
+    const loginButton = screen.getByText("Submit");
+
+    fireEvent.change(emailField, "testUser");
+    fireEvent.change(passwordField, "testPass");
+    fireEvent.click(loginButton);
+
+    const errorMessage = await screen.findByText("Login failed");
+    expect(errorMessage).toBeInTheDocument;
+  })
 });
