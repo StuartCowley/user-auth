@@ -64,12 +64,12 @@ describe("Login form component", () => {
         />
       </Router>
     )
-    const emailField = screen.getByText("Email");
-    const passwordField = screen.getByText("Password");
+    const emailField = screen.getByLabelText("Email");
+    const passwordField = screen.getByLabelText("Password");
     const loginButton = screen.getByText("Submit");
 
-    fireEvent.change(emailField, "testUser");
-    fireEvent.change(passwordField, "testPass");
+    fireEvent.change(emailField, { target: { value: "test@email.com" } });
+    fireEvent.change(passwordField, { target: { value: "testPassword" } });
     fireEvent.click(loginButton);
 
     const errorMessage = await screen.findByText("Login failed");
@@ -77,23 +77,35 @@ describe("Login form component", () => {
   })
 
   it("shows login failure message when logging in with invalid credentials", async () => {
+    const updatedProps = {
+      allUsers: [
+        {
+          firstName: "testFirst",
+          lastName: "testLast",
+          email: "test@email.com",
+          password: "qwerty"
+        }
+      ],
+      setCurrentUser: jest.fn()
+    }
     render(
       <Router>
         <LoginForm
-          allUsers={validProps.allUsers}
-          setCurrentUser={validProps.setCurrentUser}
+          allUsers={updatedProps.allUsers}
+          setCurrentUser={updatedProps.setCurrentUser}
         />
       </Router>
     )
-    const emailField = screen.getByText("Email");
-    const passwordField = screen.getByText("Password");
+    const emailField = screen.getByLabelText("Email");
+    const passwordField = screen.getByLabelText("Password");
     const loginButton = screen.getByText("Submit");
 
-    fireEvent.change(emailField, "testUser");
-    fireEvent.change(passwordField, "testPass");
+    fireEvent.change(emailField, { target: { value: "test@email.com" } });
+    fireEvent.change(passwordField, { target: { value: "badPassword" } });
     fireEvent.click(loginButton);
 
     const errorMessage = await screen.findByText("Login failed");
+
     expect(errorMessage).toBeInTheDocument;
   })
 });

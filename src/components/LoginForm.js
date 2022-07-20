@@ -29,8 +29,9 @@ const LoginForm = ({ allUsers, setCurrentUser }) => {
       setCurrentUser(matchedCredentials[0])
       navigate("/", { replace: true });
       setFormValues(initialFormValues);
+    } else {
+      setError("Login failed");
     }
-    setError("Login failed");
   }
 
   return (
