@@ -55,20 +55,20 @@ describe("Home component", () => {
       expect(button).toBeInTheDocument;
     })
 
-  it("current user setter function is called when button is clicked", () => {
-    render(
-      <Router>
-        <Home
-          currentUser={validProps.currentUser}
-          setCurrentUser={validProps.setCurrentUser}
-        />
-      </Router>);
-    const button = screen.getByRole("button", { name: "Sign out" });
-    fireEvent.click(button);
+    it("current user setter function is called when button is clicked", () => {
+      render(
+        <Router>
+          <Home
+            currentUser={validProps.currentUser}
+            setCurrentUser={validProps.setCurrentUser}
+          />
+        </Router>);
+      const button = screen.getByRole("button", { name: "Sign out" });
+      fireEvent.click(button);
 
-    expect(validProps.setCurrentUser).toHaveBeenCalledTimes(1);
-  })
-});
+      expect(validProps.setCurrentUser).toHaveBeenCalledTimes(1);
+    })
+  });
 
   describe("User is not logged in", () => {
     it("renders redirect message if user not logged in", () => {
