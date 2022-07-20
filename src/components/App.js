@@ -18,9 +18,36 @@ const App = () => {
           <NavLink className="app__nav-item" to="login">Login</NavLink>
         </nav>
         <Routes>
-          <Route path="/" element={<Home currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-          <Route path="/login" element={<LoginForm allUsers={allUsers} setCurrentUser={setCurrentUser} />} />
-          <Route path="/signup" element={<SignupForm allUsers={allUsers} setAllUsers={setAllUsers} setCurrentUser={setCurrentUser} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <LoginForm
+                allUsers={allUsers}
+                setCurrentUser={setCurrentUser}
+                currentUser={currentUser}
+              />
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <SignupForm
+                allUsers={allUsers}
+                setAllUsers={setAllUsers}
+                setCurrentUser={setCurrentUser}
+                currentUser={currentUser}
+              />
+            }
+          />
         </Routes>
       </Router>
     </div>

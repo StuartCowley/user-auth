@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "../styles/signup-form.css";
 
-const SignupForm = ({ allUsers, setAllUsers, setCurrentUser }) => {
+const SignupForm = ({ allUsers, setAllUsers, setCurrentUser, currentUser }) => {
   const initialFormValues = {
     firstName: "",
     lastName: "",
@@ -48,50 +48,57 @@ const SignupForm = ({ allUsers, setAllUsers, setCurrentUser }) => {
 
   return (
     <div className="signup-form">
-      <h1>Signup here:</h1>
-      <div className="signup-form__element">
-        <label htmlFor="firstName">First Name</label>
-        <input
-          className="signup-form__input"
-          type="text"
-          id="firstName"
-          onChange={handleInputChange}
-          value={formValues.firstName}
-        />
-      </div>
-      <div className="signup-form__element">
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          className="signup-form__input"
-          type="text"
-          id="lastName"
-          onChange={handleInputChange}
-          value={formValues.lastName}
-        />
-      </div>
-      <div className="signup-form__element">
-        <label htmlFor="email">Email</label>
-        <input
-          className="signup-form__input"
-          type="email"
-          id="email"
-          onChange={handleInputChange}
-          value={formValues.email}
-        />
-      </div>
-      <div className="signup-form__element">
-        <label htmlFor="password">Password</label>
-        <input
-          className="signup-form__input"
-          type="password"
-          id="password"
-          onChange={handleInputChange}
-          value={formValues.password}
-        />
-      </div>
-      <button onClick={handleSubmit}>Submit</button>
-      {error && <div className="signup-form__error">{error}</div>}
-    </div>
+      {currentUser ? (
+        <div>{`You are already logged in, ${currentUser.firstName}!`}</div>
+      ) : (
+        <>
+          <h1>Signup here:</h1>
+          <div className="signup-form__element">
+            <label htmlFor="firstName">First Name</label>
+            <input
+              className="signup-form__input"
+              type="text"
+              id="firstName"
+              onChange={handleInputChange}
+              value={formValues.firstName}
+            />
+          </div>
+          <div className="signup-form__element">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              className="signup-form__input"
+              type="text"
+              id="lastName"
+              onChange={handleInputChange}
+              value={formValues.lastName}
+            />
+          </div>
+          <div className="signup-form__element">
+            <label htmlFor="email">Email</label>
+            <input
+              className="signup-form__input"
+              type="email"
+              id="email"
+              onChange={handleInputChange}
+              value={formValues.email}
+            />
+          </div>
+          <div className="signup-form__element">
+            <label htmlFor="password">Password</label>
+            <input
+              className="signup-form__input"
+              type="password"
+              id="password"
+              onChange={handleInputChange}
+              value={formValues.password}
+            />
+          </div>
+          <button onClick={handleSubmit}>Submit</button>
+          {error && <div className="signup-form__error">{error}</div>}
+
+        </>
+      )}
+    </div >
   )
 }
 
