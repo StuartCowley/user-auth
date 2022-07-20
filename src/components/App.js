@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavLink, Navigate } from "react-router-dom";
 import Home from "./Home";
 import LoginForm from "./LoginForm";
 import "../styles/app.css";
@@ -8,6 +8,8 @@ import SignupForm from "./SignupForm";
 const App = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+
+  const RedirectToHome = () => <Navigate to="/" />;
 
   return (
     <div className="app">
@@ -47,6 +49,10 @@ const App = () => {
                 currentUser={currentUser}
               />
             }
+          />
+          <Route
+            path="*"
+            element={<RedirectToHome />}
           />
         </Routes>
       </Router>
