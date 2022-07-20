@@ -42,7 +42,7 @@ describe("Home component", () => {
       expect(message).toBeInTheDocument;
     });
 
-    it("renders log out button", () => {
+    it("log out button is rendered", () => {
       render(
         <Router>
           <Home
@@ -51,12 +51,24 @@ describe("Home component", () => {
           />
         </Router>);
       const button = screen.getByRole("button", { name: "Sign out" });
-      fireEvent.click(button);
 
       expect(button).toBeInTheDocument;
-      expect(validProps.setCurrentUser).toHaveBeenCalledTimes(1);
     })
-  });
+
+  it("current user setter function is called when button is clicked", () => {
+    render(
+      <Router>
+        <Home
+          currentUser={validProps.currentUser}
+          setCurrentUser={validProps.setCurrentUser}
+        />
+      </Router>);
+    const button = screen.getByRole("button", { name: "Sign out" });
+    fireEvent.click(button);
+
+    expect(validProps.setCurrentUser).toHaveBeenCalledTimes(1);
+  })
+});
 
   describe("User is not logged in", () => {
     it("renders redirect message if user not logged in", () => {
